@@ -33,4 +33,5 @@ Press Ctrl+C on any live section to return to the menu.
 Press 6 to exit.
 
 ## Screenshot
-(paste your screenshot here)
+<img width="833" height="572" alt="Desktop Screenshot 2026 02 28 - 23 49 39 68" src="https://github.com/user-attachments/assets/67814862-2427-4232-826e-a67164fa01c9" />
+<img width="679" height="485" alt="Desktop Screenshot 2026 02 28 - 23 48 59 41" src="https://github.com/user-attachments/assets/a27cfc75-1f35-4fc1-bf8e-a552a55564e3" />

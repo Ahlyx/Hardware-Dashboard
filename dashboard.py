@@ -1,6 +1,7 @@
 import psutil
 import platform
 import os
+import socket
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -82,7 +83,7 @@ def get_network_info():
 
     for interface_name, addresses in psutil.net_if_addrs().items():
         for address in addresses:
-            if str(address.family) == "AddressFamily.AF_INET": #IPv4 only
+            if address.family == socket.AF_INET: #IPv4 only
                 table.add_row("Interface", interface_name)
                 table.add_row("IP Address", address.address)
                 table.add_row("Subnet Mask", address.netmask)

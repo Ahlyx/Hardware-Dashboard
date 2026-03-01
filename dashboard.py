@@ -1,5 +1,6 @@
 import psutil
 import platform
+import os
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -106,16 +107,16 @@ def menu():
 #Calls functions and refreshes periodically for updated info
 try:
     while True:
-        console.clear()
+        os.system('cls')
         choice = menu()
-        console.clear()
+        os.system('cls')
         if choice == "1":
             console.print(Panel(get_system_info()))
             input("\nPress Enter to return to menu...")
         elif choice == "2":
             try:
                 while True:
-                    console.clear()
+                    os.system('cls')
                     console.print(Panel(get_cpu_info()))
                     time.sleep(1)
             except KeyboardInterrupt:
@@ -123,7 +124,7 @@ try:
         elif choice == "3":
             try:
                 while True:
-                    console.clear()
+                    os.system('cls')
                     console.print(Panel(get_ram_info()))
                     time.sleep(1)
             except KeyboardInterrupt:
@@ -134,7 +135,7 @@ try:
         elif choice == "5":
             try:
                 while True:
-                    console.clear()
+                    os.system('cls')
                     console.print(Panel(get_network_info()))
                     time.sleep(1)
             except KeyboardInterrupt:

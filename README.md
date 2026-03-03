@@ -1,7 +1,7 @@
 # Hardware Dashboard
 
-A terminal-based hardware monitoring tool built in Python while studying for CompTIA A+ Core 1.
-Displays real-time system information including CPU, RAM, Disk, and Network stats.
+A hardware monitoring tool built in Python while studying for CompTIA A+ Core 1.
+Available as both a CLI tool and a web dashboard with live refresh.
 
 ## Features
 - System overview (OS, architecture, hostname)
@@ -21,17 +21,32 @@ Displays real-time system information including CPU, RAM, Disk, and Network stat
 - Python 3.8+
 - psutil
 - rich
+- fastapi
+- uvicorn
 
 ## Installation
 1. Clone the repository
 2. Install dependencies with `pip install -r requirements.txt`
-3. Run with `python dashboard.py`
 
 ## Usage
+
+### CLI Version
+Run with:
+```
+python cli.py
+```
 Select a section from the menu using numbers 1-5.
 Press Ctrl+C on any live section to return to the menu.
 Press 6 to exit.
 
-## Screenshot
-<img width="679" height="485" alt="Desktop Screenshot 2026 02 28 - 23 48 59 41" src="https://github.com/user-attachments/assets/a27cfc75-1f35-4fc1-bf8e-a552a55564e3" />
-<img width="833" height="572" alt="Desktop Screenshot 2026 02 28 - 23 49 39 68" src="https://github.com/user-attachments/assets/67814862-2427-4232-826e-a67164fa01c9" />
+### Web Dashboard
+1. Start the API server:
+```
+uvicorn api:app --reload
+```
+2. Open `static/index.html` in your browser
+3. The dashboard will auto refresh every 2 seconds
+
+## Screenshots
+<img width="679" height="485" alt="CLI Menu" src="https://github.com/user-attachments/assets/a27cfc75-1f35-4fc1-bf8e-a552a55564e3" />
+<img width="833" height="572" alt="CLI Disk Output" src="https://github.com/user-attachments/assets/67814862-2427-4232-826e-a67164fa01c9" />

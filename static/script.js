@@ -2,13 +2,33 @@ async function fetchSystem() {
     const response = await fetch("http://localhost:8000/api/system")
     const data = await response.json()
 
-    document.getElementById("system-data").innerHTML = `
-        <div class="row"><span class="label">OS</span><span class="value">${data.os}</span></div>
-        <div class="row"><span class="label">VERSION</span><span class="value">${data.os_version}</span></div>
-        <div class="row"><span class="label">ARCHITECTURE</span><span class="value highlight">${data.architecture}</span></div>
-        <div class="row"><span class="label">HOSTNAME</span><span class="value">${data.hostname}</span></div>
-        <div class="row"><span class="label">PROCESSOR</span><span class="value">${data.processor}</span></div>
-    `
+    const container = document.getElementById("system-data")
+    container.innerHTML = ""
+
+    const fields = [
+        ["OS", data.os],
+        ["VERSION", data.os_version],
+        ["ARCHITECTURE", data.architecture],
+        ["HOSTNAME", data.hostname],
+        ["PROCESSOR", data.processor]
+    ]
+
+    fields.forEach(([label, value]) => {
+        const row = document.createElement("div")
+        row.className = "row"
+        
+        const labelSpan = document.createElement("span")
+        labelSpan.className = "label"
+        labelSpan.textContent = label
+
+        const valueSpan = document.createElement("span")
+        valueSpan.className = "value"
+        valueSpan.textContent = value
+
+        row.appendChild(labelSpan)
+        row.appendChild(valueSpan)
+        container.appendChild(row)
+    })
 }
 
 async function fetchCPU() {

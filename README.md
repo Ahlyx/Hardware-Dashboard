@@ -23,6 +23,7 @@ Available as both a CLI tool and a web dashboard with live refresh.
 - rich
 - fastapi
 - uvicorn
+- slowapi
 
 ## Installation
 1. Clone the repository

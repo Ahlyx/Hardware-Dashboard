@@ -48,5 +48,8 @@ uvicorn api:app --reload
 3. The dashboard will auto refresh every 2 seconds
 
 ## Screenshots
+<img width="1872" height="919" alt="s2" src="https://github.com/user-attachments/assets/1da1823a-aa77-4bcc-b70d-b1c7f6db05b1" />
+<img width="1886" height="909" alt="s1" src="https://github.com/user-attachments/assets/30433e42-e295-4ca2-875c-9696e7f7f39a" />
+
 <img width="679" height="485" alt="CLI Menu" src="https://github.com/user-attachments/assets/a27cfc75-1f35-4fc1-bf8e-a552a55564e3" />
 <img width="833" height="572" alt="CLI Disk Output" src="https://github.com/user-attachments/assets/67814862-2427-4232-826e-a67164fa01c9" />

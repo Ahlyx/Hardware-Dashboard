@@ -1,15 +1,26 @@
 import psutil
 import platform
 import socket
-from fastapi import FastAPI
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"])
+app.add_middleware(CORSMiddleware,
+    allow_origins=["http://localhost:5500", "http://127.0.0.1:5500"],
+    allow_methods=["GET"],
+    allow_headers=["*"]
+    )
 
 @app.get("/api/system")
-def system():
+@limiter.limit("30/minute")
+def system(request: Request):
     return {
     "os" : platform.system(),
     "os_version" : platform.version(),
@@ -19,7 +30,8 @@ def system():
     }
 
 @app.get("/api/cpu")
-def cpu():
+@limiter.limit("30/minute")
+def cpu(request: Request):
     return {
         "physical_cores": psutil.cpu_count(logical=False),
         "total_cores": psutil.cpu_count(logical=True),
@@ -28,7 +40,8 @@ def cpu():
     }
 
 @app.get("/api/ram")
-def ram():
+@limiter.limit("30/minute")
+def ram(request: Request):
     mem = psutil.virtual_memory()
     swap = psutil.swap_memory()
     return{
@@ -42,7 +55,8 @@ def ram():
     }
 
 @app.get("/api/disk")
-def disk():
+@limiter.limit("30/minute")
+def disk(request: Request):
     io = psutil.disk_io_counters()
     partitions = []
     
@@ -66,7 +80,8 @@ def disk():
     }
 
 @app.get("/api/network")
-def network():
+@limiter.limit("30/minute")
+def network(request: Request):
     io = psutil.net_io_counters()
     interfaces = []
 

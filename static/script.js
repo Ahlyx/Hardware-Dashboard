@@ -1,3 +1,5 @@
+// XSS-safe implementation using DOM methods instead of innerHTML
+// textContent treats data as plain text preventing script injection
 async function fetchSystem() {
     const response = await fetch("http://localhost:8000/api/system")
     const data = await response.json()
@@ -19,11 +21,11 @@ async function fetchSystem() {
         
         const labelSpan = document.createElement("span")
         labelSpan.className = "label"
-        labelSpan.textContent = label
+        labelSpan.textContent = label // textContent prevents XSS, unlike innerHTML
 
         const valueSpan = document.createElement("span")
         valueSpan.className = "value"
-        valueSpan.textContent = value
+        valueSpan.textContent = value // textContent prevents XSS, unlike innerHTML
 
         row.appendChild(labelSpan)
         row.appendChild(valueSpan)

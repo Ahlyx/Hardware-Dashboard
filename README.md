@@ -43,10 +43,15 @@ Press 6 to exit.
 ### Web Dashboard
 1. Start the API server:
 ```
-uvicorn api:app --reload
+uvicorn api:app --host 127.0.0.1 --port 8000 --reload
 ```
 2. Open `static/index.html` in your browser
 3. The dashboard will auto refresh every 2 seconds
+
+The web dashboard is intended for local use and the example explicitly binds
+to loopback. Do not use `--host 0.0.0.0` unless you intentionally want to
+expose system telemetry and have added an appropriate authentication and
+network-access boundary.
 
 ## Screenshots
 <img width="1872" height="919" alt="s2" src="https://github.com/user-attachments/assets/1da1823a-aa77-4bcc-b70d-b1c7f6db05b1" />
